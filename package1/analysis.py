@@ -1,9 +1,11 @@
 import pandas as pd
 import numpy as np
+from datetime import datetime
 from matplotlib import pyplot as plt
 from fbprophet import Prophet
 from fbprophet.diagnostics import cross_validation
 from fbprophet.plot import add_changepoints_to_plot
+from ...package2.variables import grid
 
 
 def get_df(x):
@@ -28,14 +30,16 @@ def fit_model_kwargs(market):
     return model.fit(X)
 
 
-def create_forecast(market, period, frequency):
+def create_forecast_df(market, period, frequency):
     model = fit_model_kwargs(market)
 
     future = model.make_future_dataframe(periods=period, freq=frequency)
     forecast = model.predict(future)
+    forecast = forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']]
     forecast[['yhat', 'yhat_lower']] = forecast[['yhat', 'yhat_lower']].clip(0, )
+    forecast_df = pd.merge(forecast, get_df(market), how='left', on='ds')
 
-    return forecast
+    return forecast_df
 
 
 def plot_forecast(market, period, frequency):
@@ -73,9 +77,28 @@ def model_score(grid):
     return scores
 
 
+def export_df(test_passed_scores):
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    output_df = pd.DataFrame()
+    for i in test_passed_scores:
+        market_df = create_forecast_df(i, 26, 'W').assign(market=i,
+                                                          mape=test_passed_scores[i])
+        output_df = output_df.append(market_df)
+
+    return output_df.to_csv(f'../data/processed/output{timestamp}.csv', index=False)
+
+
+
 
 def analysis(mm, timeframe):
     MM = mm
     dict_series_end_start = timeframe
+    dict_scores = model_score(grid)
+    markets_passed_threshold = {i: dict_scores[i] for i in dict_scores if dict_scores[i] < 21}
+    return export_df(markets_passed_threshold)
+
+
+
+
 
 

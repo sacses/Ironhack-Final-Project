@@ -1,4 +1,2 @@
-data/data20200320.csv
-data/data20200328.csv
-data/datad20200407.csv
-data/data20200407.csv
+data/raw/*
+data/processed/*
