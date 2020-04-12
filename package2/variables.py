@@ -1,3 +1,14 @@
+import pandas as pd
+
+covid = pd.DataFrame({
+  'holiday': 'covid',
+  'ds': pd.to_datetime(['2020-03-23', '2020-03-16', '2020-03-09',
+                        '2020-03-02']),
+  'lower_window': 0,
+  'upper_window': 0,
+})
+
+
 grid = {'GBP': {'params': {'daily_seasonality': False, 'weekly_seasonality': False,
                            'holidays': None, 'n_changepoints': 25, 'changepoint_range': 0.8,
                            'seasonality_mode': 'multiplicative', 'holidays_prior_scale': 10.0,
@@ -46,3 +57,4 @@ grid = {'GBP': {'params': {'daily_seasonality': False, 'weekly_seasonality': Fal
                            'seasonality_mode': 'multiplicative', 'holidays_prior_scale': 10.0,
                            'changepoint_prior_scale': 5},
                 'initial': 0.86}}
+
