@@ -94,8 +94,8 @@ def export_df(test_passed_scores, grid, MM, dict_series_end_start):
                                                                                            mape=test_passed_scores[i])
         output_df = output_df.append(market_df)
 
-    return output_df.to_csv(f'data/processed/output{timestamp}.csv',
-                            index=False)
+    output_df.to_csv(f'data/processed/output{timestamp}.csv', index=False)
+    return output_df
 
 
 def analysis(mm, timeframe, grid):
