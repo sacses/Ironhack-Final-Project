@@ -13,10 +13,15 @@ def load_sheets_token():
 
 def data_dump(data, keys, name):
     client = pygsheets.authorize(service_file=keys)
+    print("-----------------Authorized--------------------")
     workbook = client.open(name)
+    print("-----------------Sheet Opened------------------")
     sheet = workbook[0]
+    print("-----------------First Sheet Accessed----------")
     sheet.clear(fields='*')
-    sheet.set_dataframe(data, (1,1))
+    print("-----------------Previous records erased------------------")
+    sheet.set_dataframe(data, (1, 1))
+    print("-----------------Data Updated------------------")
 
 
 def complete_load(data):

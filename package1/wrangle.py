@@ -21,4 +21,5 @@ def series_end_start(x):
 
 def wrangle(MM):
     dict_series_end_start = {i: series_end_start(MM[i]) for i in MM.columns}
+    print("-----------------Market end and start of time series defined------------------")
     return dict_series_end_start

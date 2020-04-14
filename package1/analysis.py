@@ -1,5 +1,7 @@
-import pandas as pd
+import os
 import numpy as np
+import pandas as pd
+from dotenv import load_dotenv
 from datetime import datetime
 from matplotlib import pyplot as plt
 from fbprophet import Prophet
@@ -28,6 +30,7 @@ def fit_model_kwargs(market, grid, MM, dict_series_end_start):
     X = get_df(market, MM, dict_series_end_start)
     if market in ['GBP', 'EUR', 'CAD', 'USD', 'AUD']:
         X.loc[X['ds'] > '2020-03-02', 'y'] = None
+    print(f"-----------------Training {market} model------------------")
     model = Prophet(**grid[market]['params'])
     return model.fit(X)
 
@@ -64,7 +67,7 @@ def mean_absolute_percentage_error(y_true, y_pred):
 
 def model_error_kwargs(market, cutoff, fcst, units, grid, MM, dict_series_end_start):
     model = fit_model_kwargs(market, grid, MM, dict_series_end_start)
-
+    print(f"-----------------Cross validating {market} model------------------")
     cv_results = cross_validation(model=model,
                                   initial=pd.to_timedelta(get_test_val(market,
                                                                        grid,
@@ -86,6 +89,13 @@ def model_score(grid, MM, dict_series_end_start):
     return scores
 
 
+def get_threshold():
+    load_dotenv()
+    value = os.getenv('MAPE_THRESHOLD')
+    print(f"-----------------Threshold {value} set------------------")
+    return float(value)
+
+
 def export_df(test_passed_scores, grid, MM, dict_series_end_start):
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     output_df = pd.DataFrame()
@@ -95,6 +105,7 @@ def export_df(test_passed_scores, grid, MM, dict_series_end_start):
         output_df = output_df.append(market_df)
 
     output_df.to_csv(f'data/processed/output{timestamp}.csv', index=False)
+    print(f"-----------------Output Dataset exported at {timestamp}------------------")
     return output_df
 
 
@@ -102,5 +113,6 @@ def analysis(mm, timeframe, grid):
     MM = mm
     dict_series_end_start = timeframe
     dict_scores = model_score(grid, MM, dict_series_end_start)
-    markets_passed_threshold = {i: dict_scores[i] for i in dict_scores if dict_scores[i] < 21}
+    threshold = get_threshold()
+    markets_passed_threshold = {i: dict_scores[i] for i in dict_scores if dict_scores[i] < threshold}
     return export_df(markets_passed_threshold, grid, MM, dict_series_end_start)
