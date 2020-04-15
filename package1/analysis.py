@@ -99,11 +99,14 @@ def get_threshold(x):
 def export_df(test_passed_scores, grid, mm, timeframe, args):
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     output_df = pd.DataFrame()
-    horizon = args.horizon
-    freq = args.units
     for i in test_passed_scores:
-        market_df = create_forecast_df(i, horizon, freq, grid, mm, timeframe).assign(market=i,
-                                                                                      mape=test_passed_scores[i])
+        market_df = create_forecast_df(i,
+                                       period=args.horizon,
+                                       frequency=args.units,
+                                       grid=grid,
+                                       mm=mm,
+                                       timeframe=timeframe).assign(market=i,
+                                                                   mape=test_passed_scores[i])
         output_df = output_df.append(market_df)
 
     output_df.to_csv(f'data/processed/output{timestamp}.csv', index=False)
