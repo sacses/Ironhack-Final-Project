@@ -84,13 +84,15 @@ def model_error_kwargs(market, cutoff, fcst, units, grid, MM, dict_series_end_st
 
 
 def model_score(grid, MM, dict_series_end_start):
-    scores = {i: model_error_kwargs(i, 4, 13, 'W', grid, MM, dict_series_end_start)
+    freq = os.getenv('INPUT_FREQ')
+    x_cutoff = int(os.getenv('X_CUTOFF'))
+    x_fcst = int(os.getenv('X_FCST'))
+    scores = {i: model_error_kwargs(i, x_cutoff, x_fcst, freq, grid, MM, dict_series_end_start)
               for i in grid.keys()}
     return scores
 
 
 def get_threshold():
-    load_dotenv()
     value = os.getenv('MAPE_THRESHOLD')
     print(f"-----------------Threshold {value} set------------------")
     return float(value)
@@ -99,8 +101,10 @@ def get_threshold():
 def export_df(test_passed_scores, grid, MM, dict_series_end_start):
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     output_df = pd.DataFrame()
+    horizon = int(os.getenv('HORIZON'))
+    freq = os.getenv('INPUT_FREQ')
     for i in test_passed_scores:
-        market_df = create_forecast_df(i, 26, 'W', grid, MM, dict_series_end_start).assign(market=i,
+        market_df = create_forecast_df(i, horizon, freq, grid, MM, dict_series_end_start).assign(market=i,
                                                                                            mape=test_passed_scores[i])
         output_df = output_df.append(market_df)
 
@@ -110,6 +114,7 @@ def export_df(test_passed_scores, grid, MM, dict_series_end_start):
 
 
 def analysis(mm, timeframe, grid):
+    load_dotenv()
     MM = mm
     dict_series_end_start = timeframe
     dict_scores = model_score(grid, MM, dict_series_end_start)

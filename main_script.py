@@ -3,7 +3,14 @@ from package1.wrangle import wrangle
 from package2.variables import *
 from package1.analysis import analysis
 from package1.load import complete_load
+#import argparse
 
+"""
+def parse():
+    parser = argparse.ArgumentParser(description='Create predictions over a given time horizon')
+    parser.add_argument('threshold', type=float, help='Maximum MAPE threshold')
+
+"""
 
 def main():
     MM = acquire()

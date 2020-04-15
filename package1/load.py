@@ -1,11 +1,9 @@
 import os
 import pygsheets
 import pandas as pd
-from dotenv import load_dotenv
 
 
 def load_sheets_token():
-    load_dotenv()
     sheets_key = os.getenv('SHEETS_API_TOKEN_PATH')
     sheets_name = os.getenv('WORKBOOK_NAME')
     return sheets_key, sheets_name
