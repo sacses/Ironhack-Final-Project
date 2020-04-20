@@ -26,8 +26,22 @@ as regression variable to the model.
 * Automate the data extraction directly using a database
 
 
-#References
-*
+## References
 
+Below Facebook Prophet references:
+* https://facebook.github.io/prophet/docs/quick_start.html
+* https://towardsdatascience.com/predicting-the-future-with-facebook-s-prophet-bdfe11af10ff
+* https://xang1234.github.io/prophet/
+* https://towardsdatascience.com/implementing-facebook-prophet-efficiently-c241305405a3
+* https://medium.com/@christopher.shayan/experimenting-on-facebook-prophet-eb44818278da
+* https://medium.com/future-vision/the-math-of-prophet-46864fa9c55a
+* https://towardsdatascience.com/forecasting-with-prophet-d50bbfe95f91
 
+Below ARIMA references:
+* https://machinelearningmastery.com/power-transform-time-series-forecast-data-python/
+* https://www.machinelearningplus.com/time-series/arima-model-time-series-forecasting-python/
+* https://machinelearningmastery.com/time-series-data-visualization-with-python/
 
+Below Tableau references:
+* https://towardsdatascience.com/python-pandas-dataframe-to-google-sheets-for-tableau-desktop-live-cc1f86982bca
+* https://towardsdatascience.com/automated-etl-for-live-tableau-public-visualizations-54f2b8652224
