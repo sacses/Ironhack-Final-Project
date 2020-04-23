@@ -21,7 +21,17 @@ def get_df(market, mm, timeframe):
 
 def get_test_val(market, grid, mm, timeframe):
     return round(len(get_df(market,
-                            mm, timeframe)) * grid[market]['initial'])
+                            mm,
+                            timeframe)) * grid[market]['initial'])
+
+
+def get_test_val_2(market, mm, timeframe, units):
+    if units == 'D':
+        return len(get_df(market, mm, timeframe)) - 360
+    elif units == 'W':
+        return len(get_df(market, mm, timeframe)) - 53
+    elif units == 'M':
+        return len(get_df(market, mm, timeframe)) - 12
 
 
 def fit_model_kwargs(market, grid, mm, timeframe):
@@ -67,10 +77,10 @@ def model_error_kwargs(market, cutoff, fcst, units, grid, mm, timeframe):
     model = fit_model_kwargs(market, grid, mm, timeframe)
     print(f"-----------------Cross validating {market} model------------------")
     cv_results = cross_validation(model=model,
-                                  initial=pd.to_timedelta(get_test_val(market,
-                                                                       grid,
+                                  initial=pd.to_timedelta(get_test_val_2(market,
                                                                        mm,
-                                                                       timeframe),
+                                                                       timeframe,
+                                                                       units),
                                                           unit=units),
                                   period=pd.to_timedelta(cutoff, unit=units),
                                   horizon=pd.to_timedelta(fcst, unit=units))

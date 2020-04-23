@@ -6,4 +6,5 @@ notebooks/.ipynb_checkpoints/notebook_2-checkpoint.ipynb
 package1/__pycache__/
 package2/__pycache__/
 cron.log
-
+package1/.ipynb_checkpoints/
+.ipynb_checkpoints/
