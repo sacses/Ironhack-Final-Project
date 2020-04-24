@@ -14,9 +14,19 @@ The aim of this project is to train a time series forecasting model to predict t
 The pipeline provides with a **.csv** file where the prediction (`yhat`),  the actual historic (`y`), as well as its upper and lower bounderies of the 95% confidence interval (`yhat_upper` & `yhat_lower`) are reflected. This is then used to feed a **Tableau dashboard** where the user can evaluate the market forecast for a given time period and its reliability meassured by the [MAPE](https://en.wikipedia.org/wiki/Mean_absolute_percentage_error).
 
 
-## Model Explanation
-Out of more 
+## Model explanation
+Interpreting the results of the trained model using Prophet is quite intuitive. The three major components of a timeseries model using Prophet are:
+* Trend
+* Holidays or special events
+* Seasonality
 
+The library provides with built-in methods that provide with simple visualizations of the model components as seen below:
+
+[Model Components](https://github.com/sacses/Ironhack-Final-Project/blob/master/images/forecast_components.png)
+
+Below there is a graph containing the previous model components, the actual historic of the time series and the trend changepoints observed:
+
+[Model Forecast](https://github.com/sacses/Ironhack-Final-Project/blob/master/images/forecast_changepoint.png)
 
 
 ## Stack
