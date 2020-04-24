@@ -22,6 +22,10 @@ Interpreting the results of the trained model using Prophet is quite intuitive. 
 
 The library provides with built-in methods that provide with simple visualizations of the model components as seen below:
 
+<p align="center">
+  <img width="460" height="300" src="https://github.com/sacses/Ironhack-Final-Project/blob/master/images/forecast_components.png">
+</p>
+
 ![Model Components](https://github.com/sacses/Ironhack-Final-Project/blob/master/images/forecast_components.png)
 
 Below there is a graph containing the previous model components, the actual historic of the time series and the trend changepoints observed:
