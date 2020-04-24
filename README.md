@@ -30,7 +30,7 @@ Below there is a graph containing the previous model components, the actual hist
 
 
 ## Directory Structure
-
+```
 ├── cron.log
 ├── .env
 ├── .gitignore
@@ -56,6 +56,7 @@ Below there is a graph containing the previous model components, the actual hist
 ├── README.md
 ├── requirements.txt
 └── __trash__
+```
 
 ## Stack
 * The model is trained using the Python library `fbprophet`.
