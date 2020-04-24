@@ -22,16 +22,40 @@ Interpreting the results of the trained model using Prophet is quite intuitive. 
 
 The library provides with built-in methods that provide with simple visualizations of the model components as seen below:
 
-<p align="center">
-  <img width="460" height="300" src="https://github.com/sacses/Ironhack-Final-Project/blob/master/images/forecast_components.png">
-</p>
-
 ![Model Components](https://github.com/sacses/Ironhack-Final-Project/blob/master/images/forecast_components.png)
 
 Below there is a graph containing the previous model components, the actual historic of the time series and the trend changepoints observed:
 
 ![Model Forecast](https://github.com/sacses/Ironhack-Final-Project/blob/master/images/forecast_changepoint.png)
 
+
+## Directory Structure
+
+├── cron.log
+├── .env
+├── .gitignore
+├── data
+│   ├── processed
+│   └── raw
+├── final-project-tableua-data-5c8837f9ded0.json
+├── images
+│   ├── forecast_changepoint.png
+│   ├── forecast_components.png
+│   └── Ironhack-Data_Flow-Diagram.png
+├── main_script.py
+├── notebooks
+│   ├── notebook_1.ipynb
+│   └── notebook_2.ipynb
+├── package1
+│   ├── acquire.py
+│   ├── analysis.py
+│   ├── load.py
+│   └── wrangle.py
+├── package2
+│   └── variables.py
+├── README.md
+├── requirements.txt
+└── __trash__
 
 ## Stack
 * The model is trained using the Python library `fbprophet`.
