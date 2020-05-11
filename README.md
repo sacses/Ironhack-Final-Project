@@ -31,7 +31,7 @@ Below there is a graph containing the previous model components, the actual hist
 ![Model Forecast](https://github.com/sacses/Ironhack-Final-Project/blob/master/images/forecast_changepoint.png)
 
 
-## Pipeline Usage
+## Script execution
 
 It is suggested to execute first `python main_scrit.py -h` to obtain a view of the available parameters to tune in to execute the model. If no parameter is given when executing the program, this uses the default values specfied in each variable within the `.env`.
 
