@@ -18,7 +18,7 @@ google-auth-httplib2==0.0.3
 google-auth-oauthlib==0.4.1
 googleapis-common-protos==1.51.0
 holidays==0.10.1
-httplib2==0.17.2
+httplib2==0.19.0
 idna==2.9
 ipykernel==5.1.4
 ipython==7.13.0
